@@ -32,8 +32,8 @@ cd BlackBoard-AutoLogger
 -   Create a `.env` file in the root of your project and insert your key/value pairs in the following format of `KEY=VALUE`:
 
 ```sh
-UID=19bcs1873
-PASSWORD=g@PX9ZUW6V23AhS
+UID=12bcs1234
+PASSWORD=3454afdfj
 ```
 
 -   Open terminal and change the current directory tob the working directory

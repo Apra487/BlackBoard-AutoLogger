@@ -1,7 +1,8 @@
+.DS_Store
 node_modules
 experiment.js
 test.js
 .env
 *.png
-.DS_Store
+
 

@@ -3,4 +3,5 @@ experiment.js
 test.js
 .env
 *.png
+.DS_Store
 

@@ -2,7 +2,7 @@
   "name": "project-4",
   "version": "1.0.0",
   "description": "_I wrote this script STRICTLY for EDUCATIONAL PURPOSES and I am NOT RESPONSIBLE for any non-disciplinary action commited by its users_",
-  "main": "index.js",
+  "main": "bb.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

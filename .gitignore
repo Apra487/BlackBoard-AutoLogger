@@ -4,5 +4,6 @@ experiment.js
 test.js
 .env
 *.png
-
+sub.json
+schedule.json
 

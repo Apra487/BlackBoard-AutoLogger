@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const getTime = require('date-fns/getTime');
+const fs = require('fs');
 
 require('dotenv').config();
 
@@ -11,28 +12,7 @@ function sleep(milliseconds) {
 	} while (currentDate - date < milliseconds);
 }
 
-
-// CSE 11-A
-let routine = {
-	1: [6, 6, -1, 2, 10, -1],
-	2: [11, 11, -1, 8, 2, 1],
-	3: [3, 3, -1, 1, 10, 4],
-	4: [7, 9, -1, 4, 3, 3],
-	5: [2, 8, -1, 5, 0, 0],
-	6: [10, 5, 8, -1, 1, -1],
-};
-
-// IT-1
-// let routine = {
-// 	1: [4, 1, -1, 7, 5, 5],
-// 	2: [3, 7, -1, 0, 6, 8],
-// 	3: [3, -1, -1, 9, 9, -1],
-// 	4: [10, 4, 10, -1, 11, 11],
-// 	5: [0, 10, 1, -1, 2, 2],
-// 	6: [0, 1, -1, 2, 2, 7],
-// };
-
-
+let routine = JSON.parse(fs.readFileSync('./schedule.json'));
 
 let i;
 
@@ -44,8 +24,17 @@ let i;
 
 		let result, delay, end, close;
 
-		let day = new Date().getDay();
-		if (day === 0) {
+		let day = [
+			'Sunday',
+			'Monday',
+			'Tuesday',
+			'Wednesday',
+			'Thursday',
+			'Friday',
+			'Saturday',
+		][new Date().getDay()];
+		
+		if (new Date().getDay() === 0) {
 			console.log('Holiday!');
 			return 10;
 		}
@@ -59,7 +48,9 @@ let i;
 					end = getTime(new Date(year, month, date, 10, 45, 0, 000));
 					close = end - Date.now();
 				} else {
-					console.log('You are early Today. But no worries I will take care of it');
+					console.log(
+						'You are early Today. But no worries I will take care of it'
+					);
 					console.log('Waiting for the scheduled time ....');
 					result = getTime(
 						new Date(year, month, date, 9, 46, 0, 000)
@@ -89,12 +80,13 @@ let i;
 							new Date(year, month, date, 13, 30, 0, 000)
 						);
 						close = end - Date.now();
-					}else{
+					} else {
 						i = routine[day][1];
-						end = getTime(new Date(year, month, date, 11, 45, 0, 000));
+						end = getTime(
+							new Date(year, month, date, 11, 45, 0, 000)
+						);
 						close = end - Date.now();
 					}
-					
 				}
 				break;
 			case 11:
@@ -171,7 +163,9 @@ let i;
 				if (new Date().getMinutes() < 30) {
 					if (routine[day][3] == -1) {
 						console.log('Break is going on!! I am going to sleep');
-						result = getTime(new Date(year, month, date, 13, 35, 0, 000));
+						result = getTime(
+							new Date(year, month, date, 13, 35, 0, 000)
+						);
 						delay = result - Date.now();
 						sleep(delay);
 						i = routine[day][4];
@@ -228,10 +222,19 @@ let i;
 				return 3;
 		}
 
-		const browser = await puppeteer.launch({defaultViewport: null,headless: false,args: ['--use-fake-ui-for-media-stream','--use-file-for-fake-video-capture'],}).catch((e) => 'yo!!');
-		
+		const browser = await puppeteer
+			.launch({
+				defaultViewport: null,
+				headless: false,
+				args: [
+					'--use-fake-ui-for-media-stream',
+					'--use-file-for-fake-video-capture',
+				],
+			})
+			.catch((e) => 'yo!!');
+
 		const page = await browser.newPage().catch((e) => 'What!!');
-		await page.setDefaultNavigationTimeout(0); 
+		await page.setDefaultNavigationTimeout(0);
 		await page
 			.goto('https://cuchd.blackboard.com/ultra/', {
 				waitUntil: 'networkidle0',
@@ -245,15 +248,17 @@ let i;
 					await page.waitFor(3000);
 					console.log(2);
 					await page.reload().catch((e) => console.log('Weeds!!'));
-					await page.waitForSelector('.button-1').catch((e) => console.log('Error!!'));
+					await page
+						.waitForSelector('.button-1')
+						.catch((e) => console.log('Error!!'));
 					console.log(3);
 					let b = await page.$('.button-1');
 					if (b) break;
 				}
 			});
 		await page.click('.button-1');
-		await page.type('#user_id', process.env.UID); 
-		await page.type('#password', process.env.PASSWORD); 
+		await page.type('#user_id', process.env.UID);
+		await page.type('#password', process.env.PASSWORD);
 		await page.click('#entry-login');
 		await page.waitForNavigation({ timeout: 500000 });
 		await page
@@ -261,7 +266,7 @@ let i;
 			.catch(async (e) => {
 				let i = 0;
 				while (true) {
-					i++
+					i++;
 					console.log('BB chud gaya!!');
 					await page.waitFor(2000);
 					await page.reload();
@@ -272,14 +277,14 @@ let i;
 					let b = await page.$('.course-id');
 					if (b) break;
 				}
-				close-= i* 5000;
+				close -= i * 5000;
 			});
 		let demo = await page.$$('h4');
 		await demo[i].click().catch(async (e) => {
 			await page.evaluate(
 				'window.scrollTo(0, document.body.scrollHeight)'
 			);
-			demo = await page.$$( 'h4');
+			demo = await page.$$('h4');
 			console.log('scroll');
 			await page.waitFor(10000);
 			close = close - 10000;
@@ -321,7 +326,9 @@ let i;
 						return;
 					}
 					await page.waitFor(5000);
-					await page.reload({waitUntil: 'networkidle0'}).catch(e => true);
+					await page
+						.reload({ waitUntil: 'networkidle0' })
+						.catch((e) => true);
 					await page
 						.waitForSelector('button#sessions-list-dropdown', {
 							timeout: 40000,
@@ -342,7 +349,7 @@ let i;
 							'/html/body/div[1]/div[2]/bb-base-layout/div/main/div[3]/div/div[3]/div/div/div/div[2]/div/div[2]/div[3]/div/div[2]/div[3]/aside/div[6]/div[2]/div[2]/div/div/ul/li[2]/a'
 						);
 						if (final[0]) {
-							close = close - ((i * 12000 ) + (j * 40000));
+							close = close - (i * 12000 + j * 40000);
 							break;
 						}
 					}
@@ -361,7 +368,7 @@ let i;
 				return;
 			});
 		await page.setDefaultNavigationTimeout(0);
-		const newPage = await newTarget.page({timeout: 900000});
+		const newPage = await newTarget.page({ timeout: 900000 });
 		let appUrl = newPage._target._targetInfo.url;
 		await newPage
 			.goto(appUrl, { waitUntil: 'networkidle0' })

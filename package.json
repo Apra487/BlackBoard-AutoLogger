@@ -1,18 +1,24 @@
 {
-  "name": "project-4",
+  "name": "blackboard-auto",
   "version": "1.0.0",
-  "description": "_I wrote this script STRICTLY for EDUCATIONAL PURPOSES and I am NOT RESPONSIBLE for any non-disciplinary action commited by its users_",
+  "description": "A nodejs based application that automatically logs in into your accounts and attends your classes on cuchd.blackboard.com website",
   "main": "bb.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "APRATIM MAHATA",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Apra487/BlackBoard-AutoLogger.git"
+  },
+  "author": "Apra487",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Apra487/BlackBoard-AutoLogger/issues"
+  },
+  "homepage": "https://github.com/Apra487/BlackBoard-AutoLogger#readme",
   "dependencies": {
     "date-fns": "^2.16.1",
     "dotenv": "^8.2.0",
-    "puppeteer": "^5.3.1"
-  },
-  "devDependencies": {}
+    "puppeteer": "^5.4.1"
+  }
 }

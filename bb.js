@@ -252,8 +252,8 @@ let i;
 				}
 			});
 		await page.click('.button-1');
-		await page.type('#user_id', process.env.UID); // Give your uid inplace of YOUR UID
-		await page.type('#password', process.env.PASSWORD); // Give your password in place of PASSWORD
+		await page.type('#user_id', process.env.UID); 
+		await page.type('#password', process.env.PASSWORD); 
 		await page.click('#entry-login');
 		await page.waitForNavigation({ timeout: 500000 });
 		await page
@@ -274,16 +274,12 @@ let i;
 				}
 				close-= i* 5000;
 			});
-		let demo = await page.$$('h4'
-			// `/html/body/div[1]/div[2]/bb-base-layout/div/main/div/div/div[1]/div[1]/div/div/div[1]/div/div[2]/div/div[${i}]/bb-base-course-card/div[1]/div[2]/a/h4`
-		);
+		let demo = await page.$$('h4');
 		await demo[i].click().catch(async (e) => {
 			await page.evaluate(
 				'window.scrollTo(0, document.body.scrollHeight)'
 			);
-			demo = await page.$$( 'h4'
-				// `/html/body/div[1]/div[2]/bb-base-layout/div/main/div/div/div[1]/div[1]/div/div/div[1]/div/div[2]/div/div[${i}]/bb-base-course-card/div[1]/div[2]/a/h4`
-			);
+			demo = await page.$$( 'h4');
 			console.log('scroll');
 			await page.waitFor(10000);
 			close = close - 10000;

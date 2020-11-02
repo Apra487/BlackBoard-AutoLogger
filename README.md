@@ -55,10 +55,9 @@ node server.js setup
 
 ## How to use?
 
-<br>
 So you're done with the installation. But, how do you use it? 
 <br>
--   Execute `index.js` and voila ,you're in your class.
+-   Execute `index.js` by running the following command and voila ,you're in your class.
 
 ```bash
 node index.js

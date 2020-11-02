@@ -51,7 +51,7 @@ npm install
 node server.js setup
 ```
 
--   It will ask for your weekly timetable, which you need to provide.Don't worry the it is very interactive and you'll have no problem setting it up
+-   It will ask for your weekly timetable, which you need to provide.Don't worry it is very interactive and you'll have no problem setting it up
 
 ## How to use?
 

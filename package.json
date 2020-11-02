@@ -2,7 +2,7 @@
   "name": "blackboard-auto",
   "version": "1.0.0",
   "description": "A nodejs based application that automatically logs in into your accounts and attends your classes on cuchd.blackboard.com website",
-  "main": "bb.js",
+  "main": "index.js",
   "scripts": {
     "test": "node server.js setup"
   },

@@ -58,10 +58,10 @@ node server.js setup
 <br>
 So you're done with the installation. But, how do you use it? 
 <br>
--   Execute `bb.js` and voila ,you're in your class.
+-   Execute `index.js` and voila ,you're in your class.
 
 ```bash
-node bb.js
+node index.js
 ```
 
 <br>

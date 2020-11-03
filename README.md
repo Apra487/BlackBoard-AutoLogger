@@ -21,7 +21,7 @@ I hate attending online classes. So I wrote this script to automate my presence.
 
 ## Installation
 
-To use the program, we need to perform these step once
+To use the program, we need to perform these steps once
 
 -   Clone or download this repo.
 

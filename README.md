@@ -48,10 +48,12 @@ npm install
 -   Run the following command on the terminal.
 
 ```bash
-node server.js setup
+node run setup
 ```
 
 -   It will ask for your weekly timetable, which you need to provide.Don't worry it is very interactive and you'll have no problem setting it up
+<br>
+NOTE :: Please provide the exact total number of subjects (i.e including labs and (life skill and mentoring)).And also provide the exact time table including the time of lunch.
 
 ## How to use?
 

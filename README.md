@@ -1,6 +1,6 @@
 ## BlackBoard auto login
 
-A `nodejs` based application that automatically logs in into your account and attend your classes on [Go to the Support Web Site](https://cuchd.blackboard.com/)
+A `nodejs` based application that automatically logs in into your account and attend your classes on [cuchd.blackboard.com](https://cuchd.blackboard.com/)
  website.
 
 _I wrote this script STRICTLY for EDUCATIONAL PURPOSES and I am NOT RESPONSIBLE for any **non-disciplinary** action commited by its users, i.e., all the students of Chandigarh University (yes, ALL, not just CSE or AIT !)_

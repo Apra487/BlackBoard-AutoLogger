@@ -54,7 +54,7 @@ node run setup
 
 -   It will ask for your weekly timetable, which you need to provide.Don't worry it is very interactive and you'll have no problem setting it up
 <br>
-Please provide the exact total number of subjects (including labs and (life skill and mentoring)).And also provide the exact time table including the time of lunch.
+Please provide the exact number of subjects (including labs and (life skill and mentoring)).And also provide the exact time table including the time of lunch.
 
 ## How to use?
 

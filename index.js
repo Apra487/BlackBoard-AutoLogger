@@ -471,8 +471,6 @@ let i;
 		// await newPage.keyboard.press('Enter').catch('No chat today!');
 
 		await newPage.waitFor(close);
-		// sleep(close);
-		await browser.close();
 		await browser.close();
 	}
 })();

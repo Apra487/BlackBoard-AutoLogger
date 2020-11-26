@@ -267,7 +267,7 @@ let i;
 				let i = 0;
 				while (true) {
 					i++;
-					console.log('BB chud gaya!!');
+					console.log('BB not working!!');
 					await page.waitFor(2000);
 					await page.reload();
 					await page.waitFor(3000);
@@ -387,7 +387,7 @@ let i;
 				.catch(async (e) => {
 					t++;
 					close = close - t * 30000;
-					await newPage.reload().catch((e) => console.log('Phew!!'));
+					await newPage.reload().catch((e) => console.log('reload!!'));
 					second();
 				});
 		}

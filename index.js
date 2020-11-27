@@ -359,7 +359,7 @@ let i;
 			})();
 		}
 
-		const newTarget = await browser
+		const newTarget = await context
 			.waitForTarget((target) => target.opener() === pageTarget, {
 				timeout: 900000,
 			})

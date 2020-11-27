@@ -473,5 +473,6 @@ let i;
 
 		await newPage.waitFor(close);
 // 		await browser.close();
+		await context.close();
 	}
 })();

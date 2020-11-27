@@ -52,6 +52,7 @@ let i;
 		let hour = new Date().getHours();
 
 		switch (hour) {
+			
 			case 9:
 				if (new Date().getMinutes() > 45) {
 					i = routine[day][0];
@@ -204,6 +205,7 @@ let i;
 				} else {
 					if (routine[day][5] == -1) {
 						console.log('Class is over!!');
+						await browser.close();
 						return 2;
 					}
 					i = routine[day][5];
@@ -218,6 +220,7 @@ let i;
 					close = end - Date.now();
 				} else {
 					console.log('Class is over!!');
+					await browser.close();
 					return 2;
 				}
 				break;

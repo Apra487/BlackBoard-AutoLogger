@@ -67,4 +67,4 @@ node index.js
 ```
 
 <br>
-NOTE :: This is still under development and I am sorry if you face any problems feel free to contact. Also, let me know if you have any suggestions for the program. You know where to find me. Adios !
+NOTE :: This is still under development and I am sorry if you face any problems feel free to contact. Also, let me know if you have any suggestions for the program. You know where to find me. Adios !!

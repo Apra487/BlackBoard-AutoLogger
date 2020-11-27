@@ -232,18 +232,9 @@ let i;
 				return 3;
 		}
 
-		const browser = await puppeteer
-			.launch({
-				defaultViewport: null,
-				headless: false,
-				args: [
-					'--use-fake-ui-for-media-stream',
-					'--use-file-for-fake-video-capture',
-				],
-			})
-			.catch((e) => 'yo!!');
-
-		const page = await browser.newPage().catch((e) => 'What!!');
+		const browser = await browserPromise;
+		const context = await browser.createIncognitoBrowserContext();
+		const page = await context.newPage().catch((e) => 'What!!');
 		await page.setDefaultNavigationTimeout(0);
 		await page
 			.goto('https://cuchd.blackboard.com/ultra/', {

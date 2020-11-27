@@ -13,6 +13,16 @@ function sleep(milliseconds) {
 }
 
 let routine = JSON.parse(fs.readFileSync('./schedule.json'));
+const browserPromise = puppeteer
+.launch({
+	defaultViewport: null,
+	headless: false,
+	args: [
+		'--use-fake-ui-for-media-stream',
+		'--use-file-for-fake-video-capture',
+	],
+});
+
 
 let i;
 

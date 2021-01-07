@@ -244,10 +244,10 @@ let i;
 			.waitForSelector('.button-1', { timeout: 40000 })
 			.catch(async (e) => {
 				while (true) {
-					console.log(1);
-					await page.waitFor(3000);
-					console.log(2);
-					await page.reload().catch((e) => console.log('Weeds!!'));
+					
+					await sleep(3000);
+					
+					await page.reload();
 					await page
 						.waitForSelector('.button-1')
 						.catch((e) => console.log('Error!!'));
@@ -268,9 +268,9 @@ let i;
 				while (true) {
 					i++;
 					console.log('BB not working!!');
-					await page.waitFor(2000);
+					await sleep(2000);
 					await page.reload();
-					await page.waitFor(3000);
+					await sleep(3000);
 					await page
 						.waitForSelector('.course-id')
 						.catch((e) => console.log('Nope!!'));
@@ -286,10 +286,9 @@ let i;
 			);
 			demo = await page.$$('h4');
 			console.log('scroll');
-			await page.waitFor(10000);
+			await sleep(10000);
 			close = close - 10000;
-			await demo[i].click().catch((e) => console.log('Bitch'));
-			console.log(demo);
+			await demo[i].click().catch((e) => console.log('Not Loaded!'));
 		});
 		await page.waitFor(10000);
 		close = close - 10000;
@@ -299,8 +298,8 @@ let i;
 		close = close - 10000;
 		let join = await page
 			.$$('button#sessions-list-dropdown')
-			.catch((e) => console.log('BC'));
-		await join[0].click().catch((e) => console.log('BC'));
+			.catch((e) => console.log('Not started!'));
+		await join[0].click().catch((e) => console.log('Can\'t join'));
 		let final = await page
 			.$x(
 				'/html/body/div[1]/div[2]/bb-base-layout/div/main/div[3]/div/div[3]/div/div/div/div[2]/div/div[2]/div[3]/div/div[2]/div[3]/aside/div[6]/div[2]/div[2]/div/div/ul/li[2]/a'
@@ -325,7 +324,7 @@ let i;
 						close = 0;
 						return;
 					}
-					await page.waitFor(5000);
+					await sleep(5000);
 					await page
 						.reload({ waitUntil: 'networkidle0' })
 						.catch((e) => true);
@@ -342,7 +341,8 @@ let i;
 						.catch((e) => console.log('BB error!!'));
 					console.log(join.length);
 					if (join[0]) {
-						await page.waitFor(10000);
+						await 
+						(10000);
 						i++;
 						await join[0].click().catch((e) => console.log('BC'));
 						final = await page.$x(
@@ -373,12 +373,12 @@ let i;
 		await newPage
 			.goto(appUrl, { waitUntil: 'networkidle0' })
 			.catch((e) => console.log('error'));
-		await newPage.waitFor(30000);
+		await sleep(30000);
 
 		let seconds = 0;
 		async function second() {
 			seconds++;
-			await newPage.waitFor(30000);
+			await sleep(30000);
 			console.log('second!!');
 			close = close - seconds * 30000;
 			let t = 0;
@@ -393,7 +393,7 @@ let i;
 		}
 
 		second().catch(async (e) => {
-			await newPage.waitFor(30000);
+			await sleep(30000);
 			close = close - 30000;
 			await newPage.reload();
 			second();
@@ -405,7 +405,7 @@ let i;
 			);
 			if (end1) {
 				await end1.click().catch(async (e) => {
-					await newPage.waitFor(30000);
+					await sleep(30000);
 					await newPage.reload();
 					console.log('third0!!');
 					second();
@@ -413,7 +413,7 @@ let i;
 				});
 			} else {
 				await newPage.reload();
-				await newPage.waitFor(30000);
+				await sleep(30000);
 				close = close - 30000;
 				console.log('third!!');
 				second();
@@ -426,7 +426,7 @@ let i;
 			third();
 		});
 
-		await newPage.waitFor(30000);
+		await sleep(30000);
 		close = close - 30000;
 		await newPage
 			.waitForSelector(`div.announcement-content`, { timeout: 900000 })
@@ -459,7 +459,7 @@ let i;
 		// await chat.click().catch(e =>{
 		//     console.log('Not Available');
 		// });;
-		// await newPage.waitFor(1000);
+		// await sleep(1000);
 		// await newPage.click('button.channel-item').catch(e => 'chat not available');
 		// let message = '';
 		// if (new Date().getHours() >= 12) {
@@ -470,7 +470,7 @@ let i;
 		// await newPage.type('textarea#message-input', message, {delay: 60}).catch('No chat today!');
 		// await newPage.keyboard.press('Enter').catch('No chat today!');
 
-		await newPage.waitFor(close);
+		await sleep(close);
 		await browser.close();
 	}
 })();

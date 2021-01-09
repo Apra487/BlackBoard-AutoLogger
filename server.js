@@ -54,7 +54,6 @@ let prompt1 = async (day, index) => {
                     console.log(schedule[index]);
 					schedule[day].push(-1);
 				} else {
-                    console.log();
 					schedule[day].push(totalSubject.indexOf(selected));
 				}
 				return prompt1(day);

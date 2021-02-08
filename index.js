@@ -273,7 +273,7 @@ let i;
 			});
 		await page.click('.button-1');
 		await page.type('#user_id', process.env.UID);
-		await page.type('#password', 'Apra1234@21');
+		await page.type('#password', process.env.PASSWORD);
 		await page.click('#entry-login');
 		await page.waitForNavigation({ timeout: 500000 });
 		await page

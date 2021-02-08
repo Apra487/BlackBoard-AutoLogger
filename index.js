@@ -484,5 +484,6 @@ let i;
 		// await newPage.type('textarea#message-input', message, {delay: 60}).catch('No chat today!');
 		// await newPage.keyboard.press('Enter').catch('No chat today!');
 		await newPage.waitFor(close);
+		await browser.close();
 	}
 })();

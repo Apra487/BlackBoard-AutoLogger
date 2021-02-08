@@ -207,6 +207,21 @@ let i;
 					end = getTime(new Date(year, month, date, 15, 30, 0, 000));
 					close = end - Date.now();
 				} else {
+					if (routine[day][6] == -1) {
+						console.log('Class is over!!');
+						return 2;
+					}
+					i = routine[day][6];
+					end = getTime(new Date(year, month, date, 15, 30, 0, 000));
+					close = end - Date.now();
+				}
+				break;
+			case 16:
+				if (new Date().getMinutes() < 30) {
+					i = routine[day][6];
+					end = getTime(new Date(year, month, date, 16, 30, 0, 000));
+					close = end - Date.now();
+				} else {
 					console.log('Class is over!!');
 					return 2;
 				}
@@ -258,7 +273,7 @@ let i;
 			});
 		await page.click('.button-1');
 		await page.type('#user_id', process.env.UID);
-		await page.type('#password', process.env.PASSWORD);
+		await page.type('#password', 'Apra1234@21');
 		await page.click('#entry-login');
 		await page.waitForNavigation({ timeout: 500000 });
 		await page
@@ -439,7 +454,6 @@ let i;
 			.catch((e) => {
 				console.log('Not Available');
 			});
-
 		if (finish) {
 			await finish.click().catch((e) => {
 				console.log('Not Available');
@@ -469,8 +483,6 @@ let i;
 		// }
 		// await newPage.type('textarea#message-input', message, {delay: 60}).catch('No chat today!');
 		// await newPage.keyboard.press('Enter').catch('No chat today!');
-
 		await newPage.waitFor(close);
-		await browser.close();
 	}
 })();

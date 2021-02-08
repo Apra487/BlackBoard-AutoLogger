@@ -39,7 +39,7 @@ const daysInWeek = [
 let j = 0;
 let prompt1 = async (day, index) => {
 	j++;
-	if (j <= 6) {
+	if (j <= 7) {
 		return inquirer
 			.prompt([
 				{
@@ -51,15 +51,15 @@ let prompt1 = async (day, index) => {
 			])
 			.then(({ selected }) => {
 				if (selected === 'break') {
-                    console.log(schedule[index]);
+					console.log(schedule[index]);
 					schedule[day].push(-1);
 				} else {
-                    console.log();
+					console.log();
 					schedule[day].push(totalSubject.indexOf(selected));
 				}
 				return prompt1(day);
-            })
-            .catch((e) => console.log(e))
+			})
+			.catch((e) => console.log(e));
 	}
 };
 
@@ -77,28 +77,31 @@ program
 					async () => {
 						try {
 							totalSubject = totalSubject.sort();
-							totalSubject.push('break')
+							totalSubject.push('break');
 							await fspromise.writeFile(
 								path.resolve('./sub.json'),
 								JSON.stringify(totalSubject)
 							);
-                            async function finalPrompt(index) {
-                                index++;
-                                schedule[daysInWeek[index]] = [];
-                                if (index < 7) {
-                                return await prompt1(daysInWeek[index], index)
-                                .then(() => {
-                                    
-                                    j = 0;
-                                    console.log('yo');
-                                    console.log(index);
-                                    fs.writeFileSync( path.resolve('./schedule.json'), JSON.stringify(schedule, null, 2));
-                                    finalPrompt(index);
-                                });
-                                }
-                            }
-                            await finalPrompt(0);
-                           
+							async function finalPrompt(index) {
+								index++;
+								schedule[daysInWeek[index]] = [];
+								if (index < 7) {
+									return await prompt1(
+										daysInWeek[index],
+										index
+									).then(() => {
+										j = 0;
+										console.log('yo');
+										console.log(index);
+										fs.writeFileSync(
+											path.resolve('./schedule.json'),
+											JSON.stringify(schedule, null, 2)
+										);
+										finalPrompt(index);
+									});
+								}
+							}
+							await finalPrompt(0);
 						} catch (error) {
 							console.log('Crap happens');
 						}

@@ -181,6 +181,10 @@ let i;
 						close = end - Date.now();
 					}
 				} else {
+					if (routine[day][4] == -1) {
+						console.log('Class is over!!');
+						return 2;
+					}
 					i = routine[day][4];
 					end = getTime(new Date(year, month, date, 14, 30, 0, 000));
 					close = end - Date.now();
@@ -212,7 +216,7 @@ let i;
 						return 2;
 					}
 					i = routine[day][6];
-					end = getTime(new Date(year, month, date, 15, 30, 0, 000));
+					end = getTime(new Date(year, month, date, 16, 30, 0, 000));
 					close = end - Date.now();
 				}
 				break;
